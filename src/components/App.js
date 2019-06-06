@@ -3,19 +3,26 @@ import axios from 'axios';
 class App extends React.Component{
     state = {
         paras: 4,
-        type: 'hipster-latin',
-        html: true
+        type: 'all meat',
+        format: 'text',
+        text: ''
     }
-    componentDidMount(){
-        async const response =  await axios.get('http://hipsterjesus.com/api/',{
+    componentDidMount= async () =>{
+         const response =  await axios.get('https://baconipsum.com/api/',{
             params : {
-                paras : this.state.paras,
                 type: this.state.type,
-                html: this.state.html
+                paras : this.state.paras,
+                format : this.state.format
+                
+                
 
             }
-        })
-        console.log(response);
+            
+        }
+        
+        )
+        console.log(response.data);
+        
     }
 
     render() {
