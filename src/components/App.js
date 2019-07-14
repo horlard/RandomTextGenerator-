@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import TextDetail from './text-details';
-import Loader from './loader';
 import '../style.css'
 
 class App extends React.Component{
