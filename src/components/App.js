@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import TextDetail from './text-details';
+import Loader from './loader';
 import '../style.css'
+
 class App extends React.Component{
     constructor(props) {
         super(props);
@@ -29,7 +31,6 @@ class App extends React.Component{
         }
         
         )
-        
         this.setState({text: response.data})
         
         
@@ -43,6 +44,8 @@ class App extends React.Component{
             return 'text';
         }
     }
+
+    
 
     render() {
         console.log(this.OpRef.value)
@@ -66,7 +69,9 @@ class App extends React.Component{
                     Generate
                 </button>
             </div>
-                <TextDetail  text={this.state.text}/>
+             <TextDetail  text={this.state.text}/>
+            
+                
             
             </div>
             

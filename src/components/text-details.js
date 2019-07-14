@@ -1,14 +1,15 @@
 import React from 'react';
+import '../style.css'
 
 
 const TextDetail = ({text}) => {
     return (
         <div>
-            <div className='ui header'>
-                Random text editor
-            </div>
-            <div>
-                {text}
+            
+            <div className='para-text'>
+                
+                <p>{text}</p>
+                
             </div>
         </div>
 
