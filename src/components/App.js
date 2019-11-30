@@ -13,11 +13,13 @@ class App extends React.Component{
     }
     state = {
         type: 'all meat',
-        text: ''
+        text: '',
+        isLoading:null
     }
    
-    onConvert = async () => {
-         const response =  await axios.get('https://baconipsum.com/api/',{
+    onConvert = () => {
+        this.setState({isLoading:true})
+         axios.get('https://baconipsum.com/api/',{
             params : {
                 type: this.state.type,
                 paras : this.inputRef.value,
@@ -28,9 +30,14 @@ class App extends React.Component{
             }
             
         }
+        ).then(res=> {
+            if(res) {
+                this.setState({text: res.data})
+                this.setState({isLoading:false})
+            }
+        })
+
         
-        )
-        this.setState({text: response.data})
         
         
         
@@ -48,6 +55,7 @@ class App extends React.Component{
 
     render() {
         console.log(this.OpRef.value)
+        const {isLoading} =this.state
         return (
             <div className='ui container'>
                 <h1 className='ui header'>
@@ -56,15 +64,15 @@ class App extends React.Component{
             <div>
                 <span className='ui header'>Format:</span>
             <select className="ui dropdown" ref={OpRef=>this.OpRef=OpRef}>
-                <option  >html</option>
-                <option >Text</option>
+                <option>html</option>
+                <option>Text</option>
             </select>
             <span className='ui header'>Paragraph:</span>
             <div className="ui input">
                 
                 <input type="number" placeholder="0" ref={inputRef => this.inputRef = inputRef}/>
             </div>
-                <button className="ui primary button" onClick={this.onConvert}>
+                <button className={`ui primary ${isLoading==true ? 'loading' : ''} button`} onClick={this.onConvert} disabled={isLoading}>
                     Generate
                 </button>
             </div>
